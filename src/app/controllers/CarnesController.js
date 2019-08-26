@@ -8,14 +8,7 @@ class CarnesController {
 
     const lista = await Carnes.findAll({
       where: { escola, ano, seqano, matric },
-      order: ['parcel'],
-      include: [
-        {
-          model: Alunos,
-          as: 'alunos',
-          attributes: ['nome'],
-        },
-      ]
+      order: ['parcel']
     });
 
     return res.json(lista);
