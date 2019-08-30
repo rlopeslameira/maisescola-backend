@@ -3,14 +3,16 @@ import { Router } from 'express';
 // clientes
 import ClientController from './app/controllers/ClientController';
 
+import PeriodoController from './app/controllers/PeriodoController';
 import CarnesController from './app/controllers/CarnesController';
 import SessionController from './app/controllers/SessionController';
-
+import EmpresaController from './app/controllers/EmpresaController';
 import sessionValitate from './app/middlewares/sessionValidator';
 
 const routes = new Router();
 
 import selectDatabase from './app/middlewares/selectDatabase';
+import ConfiguracaoController from './app/controllers/ConfiguracaoController';
 
 //CLIENTES
 routes.get('/clients', ClientController.index);
@@ -24,8 +26,22 @@ routes.put('/clients', ClientController.update);
 //routes.put('/users', UpdateStoreValidation, UserController.update);
 
 routes.use(selectDatabase);
-routes.get('/carnes', CarnesController.index);
+
+// ESCOLA
+routes.get('/empresa', EmpresaController.index);
+
+/**
+ * LOGIN
+ */
 routes.post('/session', sessionValitate, SessionController.create)
 
+/**
+ * CARNES
+ */
+routes.get('/carnes', CarnesController.index);
+
+
+routes.get('/periodos', PeriodoController.index);
+routes.get('/config', ConfiguracaoController.index);
 
 export default routes;
