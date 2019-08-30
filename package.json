@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon src/server.js",
-	"start": "node src/server.js"
+	"start": "sucrase-node src/server.js"
   },
   "dependencies": {
     "@sentry/node": "5.6.2",
