@@ -8,6 +8,8 @@ import CarnesController from './app/controllers/CarnesController';
 import SessionController from './app/controllers/SessionController';
 import EmpresaController from './app/controllers/EmpresaController';
 import sessionValitate from './app/middlewares/sessionValidator';
+import BoletosController from './app/controllers/BoletosController';
+import AlunosController from './app/controllers/AlunosController';
 
 const routes = new Router();
 
@@ -27,6 +29,10 @@ routes.put('/clients', ClientController.update);
 
 routes.use(selectDatabase);
 
+routes.get('/boletos', BoletosController.index);
+routes.get('/alunos', AlunosController.index);
+
+
 // ESCOLA
 routes.get('/empresa', EmpresaController.index);
 
@@ -39,6 +45,7 @@ routes.post('/session', sessionValitate, SessionController.create)
  * CARNES
  */
 routes.get('/carnes', CarnesController.index);
+
 
 
 routes.get('/periodos', PeriodoController.index);

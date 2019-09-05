@@ -14,8 +14,43 @@ import Professores from '../models/Professores';
 import Periodos from '../models/Periodos';
 import Configuracao from '../models/Configuracao';
 import Empresa from '../models/Empresa';
+import Bancos from '../models/Bancos';
+import Carnesmen from '../models/Carnesmen';
+import Codoco from '../models/Codoco';
+import DiarioAvaliacoes from '../models/DiarioAvaliacores';
+import DiarioConteudo from '../models/DiarioConteudo';
+import DiarioFaltaDia from '../models/DiarioFaltaDia';
+import DiarioFaltaMes from '../models/DiarioFaltaMes';
+import DiarioDatLimFre from '../models/DiarioDatLimFre';
+import DiarioGrade from '../models/DiarioGrade';
+import DiarioNotas from '../models/DiarioNotas';
+import Disciplinas from '../models/Disciplinas';
+import FrequenciaDia from '../models/FrequenciaDia';
+import FuncionarioTurma from '../models/FuncionarioTurma';
+import Historico from '../models/Historico';
+import HistoricoDisciplina from '../models/HistoricoDisciplina';
+import Horario from '../models/Horario';
+import Localizacao from '../models/Localizacao';
+import Log from '../models/Log';
+import Ouvidoria from '../models/Ouvidoria';
+import OuvidoriaResposta from '../models/OuvidoriaResposta';
+import Pessoas from '../models/Pessoas';
+import RegistroOcorrencia from '../models/RegistroOcorrencia';
+import RequerimentoWeb from '../models/RequerimentoWeb';
+import Turmas from '../models/Turmas';
+import AlunoLogado from '../models/AlunoLogado';
+import Boletim from '../models/Boletim';
 
-const models = [Empresa, Alunos, Professores, Periodos, Configuracao, Carnes];
+const models = [Empresa, Alunos, Professores,
+  Periodos, Configuracao, Carnes,
+  Bancos, Carnesmen, Codoco, DiarioAvaliacoes,
+  DiarioConteudo, DiarioFaltaDia, DiarioFaltaMes,
+  DiarioDatLimFre, DiarioGrade, DiarioNotas,
+  Disciplinas, FrequenciaDia, FuncionarioTurma,
+  Historico, HistoricoDisciplina, Horario,
+  Localizacao, Log, Ouvidoria, OuvidoriaResposta,
+  Pessoas, RegistroOcorrencia, RequerimentoWeb,
+  Turmas, AlunoLogado, Boletim];
 
 export default async (req, res, next) => {
 
@@ -34,7 +69,6 @@ export default async (req, res, next) => {
       codigo
     });
   }
-  console.log(codigo);
 
   if (prefixo) {
     result = await Clientes.findOne({
@@ -46,7 +80,10 @@ export default async (req, res, next) => {
     return res.status(400).json({ error: 'Instituição não encontrada!' });
   }
 
-  // Seta a conexão com o banco de dados do cliente informado (código ou prefixo)
+  /**
+   * Seta a conexão com o banco de dados 
+   * do cliente informado (código ou prefixo) 
+   * */
   this.connection = new Sequelize({
     dialect: 'mysql',
     host: result.host,
